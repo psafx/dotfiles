@@ -10,9 +10,9 @@ set nomodeline
 syntax on
 
 " Set colorscheme
-if &term == "xterm-256color"
+if &term == "xterm-256color" || &term == "linux"
   set t_Co=256
-  colorscheme inkpot
+  colorscheme leo
 else
   colorscheme desert
   " Set highlight of matching bracket
@@ -50,6 +50,9 @@ set encoding=utf-8 nobomb
 set binary
 set noeol
 
+" Watch for file changes
+set autoread
+
 " Show the filename in the window titlebar
 set title
 " Enable mouse in all modes
@@ -78,6 +81,8 @@ set smartcase
 set incsearch
 " Report all changes
 set report=0
+" Open new split windows below current
+set splitbelow
 
 " More powerful backspacing
 set backspace=indent,eol,start
@@ -113,8 +118,8 @@ endif
 " Use C-indenting
 set cindent
 
-" Folding method
-set foldmethod=marker
+" Disable folding
+set nofoldenable
 
 " Remap colon key to semicolon
 nnoremap ; :
@@ -147,8 +152,13 @@ au FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Match TODO /\s\+$/
-highlight ExtraWhiteSpace ctermbg=red guibg=red
-au ColorScheme * highlight ExtraWhiteSpace guibg=red
+if &t_Co == 256
+  hi ExtraWhiteSpace ctermbg=160 guibg=196
+  au ColorScheme * hi ExtraWhiteSpace ctermbg=160 guibg=196
+else
+  hi ExtraWhiteSpace ctermbg=red guibg=red
+  au ColorScheme * hi ExtraWhiteSpace ctermbg=red guibg=red
+endif
 au BufEnter * match ExtraWhiteSpace /\s\+$/
 au InsertEnter * match ExtraWhiteSpace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\s\+$/

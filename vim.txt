@@ -11,6 +11,9 @@ mkdir -p ~/.vim/colors; \
 curl -so ~/.vim/colors/inkpot.vim \
 https://raw.github.com/vim-scripts/inkpot/master/colors/inkpot.vim
 
+curl -so ~/.vim/colors/leo.vim \
+"http://www.vim.org/scripts/download_script.php?src_id=14339"
+
 # Nginx vim syntax
 mkdir -p ~/.vim/syntax; \
 curl -so ~/.vim/syntax/nginx.vim \
