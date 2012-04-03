@@ -54,9 +54,18 @@ set noeol
 set autoread
 
 " Show the filename in the window titlebar
-set title
+if !has("gui_running")
+  set titleold=
+  if (&term == "xterm" && &t_ts == "")
+    let &t_ts = "\e]2;"
+  endif
+  if &t_ts != ""
+    set title titlestring=%t%m\ -\ VIM
+  endif
+endif
+
 " Enable mouse in all modes
-set mouse=a
+"set mouse=a
 " Hide buffers when they are abandoned
 set hidden
 " Toggle paste mode with F2
@@ -106,7 +115,7 @@ set lazyredraw
 
 " Highlight whitespaces
 set list
-if (&termencoding == "utf-8")
+if &termencoding == "utf-8"
   set list listchars=tab:»·,trail:·,extends:>,precedes:<,nbsp:_
 else
   set list listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:_
