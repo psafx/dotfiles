@@ -93,7 +93,7 @@ endif
 " ### Normal should come first
 
 " console-gui different
-hi Normal				cterm=none		ctermfg=255		ctermbg=0 guifg=#ffffff	guibg=#121212
+hi Normal				cterm=none		ctermfg=255		ctermbg=233 guifg=#ffffff	guibg=#272822
 "hi Normal				cterm=none		ctermfg=255		ctermbg=232 guifg=#ffffff	guibg=#121212
 hi CursorLine		cterm=none		ctermbg=16		guibg=#050505
 hi SpecialKey		cterm=none		ctermfg=245		ctermbg=233		guifg=#8a8a8a	guibg=#090909
@@ -147,7 +147,7 @@ if v:version >= 700
 	hi SpellCap			cterm=none    ctermfg=16		ctermbg=196
 	hi SpellLocal		cterm=none    ctermfg=16		ctermbg=196
 	hi SpellRare		cterm=none    ctermfg=16		ctermbg=196
-	
+
 	" No need for GUI colors
 	"hi TabLine			cterm=none	ctermfg=252		ctermbg=17
 	"hi TabLineSel		cterm=none	ctermfg=255		ctermbg=21

@@ -12,7 +12,8 @@ syntax on
 " Set colorscheme
 if &term == "xterm-256color" || &term == "linux"
   set t_Co=256
-  colorscheme leo
+  colorscheme monokai
+"  colorscheme leo
 else
   colorscheme desert
   " Set highlight of matching bracket
