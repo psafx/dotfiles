@@ -23,7 +23,7 @@ endif
 " Centralize backups, swapfiles and undo history
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/tmp
-set undodir=$HOME/.vim/undo
+"set undodir=$HOME/.vim/undo
 
 " Remember more commands and search history
 set history=1000
@@ -43,13 +43,18 @@ endif
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Don’t show the intro message when starting vim
+" Don't show the intro message when starting vim
 set shortmess=atI
 " Use UTF-8 without BOM encoding
 set encoding=utf-8 nobomb
 " Don't add empty newlines at the end of files
-set binary
 set noeol
+if has('win16') || has('win32') || has('win64')
+  set fileformat=dos
+else
+  set binary
+  set fileformat=unix
+endif
 
 " Watch for file changes
 set autoread
@@ -92,13 +97,13 @@ set incsearch
 " Report all changes
 set report=0
 " Open new split windows below current
-set splitbelow
+"set splitbelow
 
 " More powerful backspacing
 set backspace=indent,eol,start
 " Don't wrap lines
 "set nowrap
-" Don’t reset cursor to start of line when moving around.
+" Don't reset cursor to start of line when moving around.
 set nostartofline
 " Enhance command-line completion
 set wildmenu
@@ -132,10 +137,10 @@ set cindent
 set nofoldenable
 
 " Remap colon key to semicolon
-nnoremap ; :
+noremap ; :
 " Remap J K in wrap mode
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 " Turn off error bells
 set noerrorbells
@@ -155,11 +160,12 @@ au BufNewFile,bufRead /etc/nginx/* set ft=nginx
 au BufNewFile,BufRead *.tpl set filetype=html
 
 " Set tab size for specific file format
-au FileType php setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-au FileType html,xhtml,xml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+au FileType php,perl setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+au FileType html,xhtml,xml,htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+au FileType nginx setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Match TODO /\s\+$/
 if &t_Co == 256
