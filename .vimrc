@@ -12,7 +12,8 @@ syntax on
 " Set colorscheme
 if &term == "xterm-256color" || &term == "linux"
   set t_Co=256
-  colorscheme monokai
+  colorscheme Tomorrow-Night-Bright
+"  colorscheme monokai
 "  colorscheme leo
 else
   colorscheme desert
@@ -158,13 +159,14 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]\ [%{&fo}]
 " Nginx
 au BufNewFile,bufRead /etc/nginx/* set ft=nginx
 au BufNewFile,BufRead *.tpl set filetype=html
+au BufNewFile,BufRead *.go set filetype=golang
 
 " Set tab size for specific file format
 au FileType php,perl setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType html,xhtml,xml,htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-au FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+au FileType python,golang setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 au FileType nginx setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " Match TODO /\s\+$/
