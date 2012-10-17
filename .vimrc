@@ -95,6 +95,10 @@ set ignorecase
 set smartcase
 " Incremental search
 set incsearch
+" Highlight search
+set hlsearch
+" Press Space to turn off highlighting and clear any message already displayed.
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " Report all changes
 set report=0
 " Open new split windows below current
@@ -138,10 +142,10 @@ set cindent
 set nofoldenable
 
 " Remap colon key to semicolon
-noremap ; :
+nnoremap ; :
 " Remap J K in wrap mode
-noremap j gj
-noremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " Turn off error bells
 set noerrorbells
