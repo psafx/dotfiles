@@ -1,15 +1,23 @@
-" Pathogen to load everything
-call pathogen#infect()
-
-" Use Vim defaults instead of 100% vi compatibility
+"Use Vim defaults instead of 100% vi compatibility
 set nocompatible
-" Modelines have historically been a source of security/resource
+"Modelines have historically been a source of security/resource
 set nomodeline
 
-" Enables syntax highlighting
+"Setup vbundle
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
+Bundle 'bufexplorer.zip'
+Bundle 'Tagbar'
+
+"Enables syntax highlighting
 syntax on
 
-" Set colorscheme
+"Set colorscheme
 if &term == "xterm-256color" || &term == "linux"
   set t_Co=256
   colorscheme Tomorrow-Night-Bright
@@ -17,38 +25,32 @@ if &term == "xterm-256color" || &term == "linux"
 "  colorscheme leo
 else
   colorscheme desert
-  " Set highlight of matching bracket
+  "Set highlight of matching bracket
   highlight MatchParen ctermbg=4
 endif
 
-" Centralize backups, swapfiles and undo history
+"Centralize backups, swapfiles and undo history
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/tmp
 "set undodir=$HOME/.vim/undo
 
-" Remember more commands and search history
+"Remember more commands and search history
 set history=1000
 set undolevels=1000
 
-" Jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+"Load ftplugins and indent files
+filetype plugin indent on
+filetype indent on
 
-" Load indentation rules and plugins according to the detected filetype
-if has("autocmd")
-  filetype plugin indent on
-endif
-
-" Suffixes that get lower priority when doing tab completion for filenames.
-" These are files we are not likely to want to edit or read.
+"Suffixes that get lower priority when doing tab completion for filenames.
+"These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-" Don't show the intro message when starting vim
+"Don't show the intro message when starting vim
 set shortmess=atI
-" Use UTF-8 without BOM encoding
+"Use UTF-8 without BOM encoding
 set encoding=utf-8 nobomb
-" Don't add empty newlines at the end of files
+"Don't add empty newlines at the end of files
 set noeol
 if has('win16') || has('win32') || has('win64')
   set fileformat=dos
@@ -57,10 +59,10 @@ else
   set fileformat=unix
 endif
 
-" Watch for file changes
+"Watch for file changes
 set autoread
 
-" Show the filename in the window titlebar
+"Show the filename in the window titlebar
 if !has("gui_running")
   set titleold=
   if (&term == "xterm" && &t_ts == "")
@@ -71,60 +73,60 @@ if !has("gui_running")
   endif
 endif
 
-" Enable mouse in all modes
+"Enable mouse in all modes
 "set mouse=a
-" Hide buffers when they are abandoned
+"Hide buffers when they are abandoned
 set hidden
-" Toggle paste mode with F2
-set pastetoggle=<F2>
+"Toggle paste mode with F10
+set pastetoggle=<F10>
 
-" Show the cursor position all the time
+"Show the cursor position all the time
 set ruler
-" Show line number
-"set number
-" Show the current mode
+"Show line number
+set number
+"Show the current mode
 set showmode
-" Show (partial) command in status line
+"Show (partial) command in status line
 set showcmd
-" Show matching brackets
+"Show matching brackets
 set showmatch
 set matchtime=3
-" Do case insensitive matching
+"Do case insensitive matching
 set ignorecase
-" Do smart case matching
+"Do smart case matching
 set smartcase
-" Incremental search
+"Incremental search
 set incsearch
-" Highlight search
+"Highlight search
 set hlsearch
-" Press Space to turn off highlighting and clear any message already displayed.
+"Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-" Report all changes
+"Report all changes
 set report=0
-" Open new split windows below current
+"Open new split windows below current
 "set splitbelow
 
-" More powerful backspacing
+"More powerful backspacing
 set backspace=indent,eol,start
-" Don't wrap lines
+"Don't wrap lines
 "set nowrap
-" Don't reset cursor to start of line when moving around.
+"Don't reset cursor to start of line when moving around.
 set nostartofline
-" Enhance command-line completion
+"Enhance command-line completion
 set wildmenu
 set wildmode=list:longest,full
-" Ignore files
+"Ignore files
 set wildignore+=*.o,*.obj,*.r,*.class,*.pyc,*.so,*.sl,*.exe,*.dll,*.manifest
 set wildignore+=*.tar,*.tgz,*.gz,*.bz2,*.dmg,*.rar,*.7z,*.zip,*.pdf
 set wildignore+=*.jpg,*.png,*.gif,*.bmp,*.jpeg
 set wildignore+=*CVS/*,*.svn/*,*.git/*
 set wildignore+=*.toc,*.aux,*.dvi,*.DS_Store
 
-" Optimize for fast terminal connections
+"Optimize for fast terminal connections
 set ttyfast
 set lazyredraw
 
-" Highlight whitespaces
+"Highlight whitespaces
 set list
 if &termencoding == "utf-8"
   set list listchars=tab:»·,trail:·,extends:>,precedes:<,nbsp:_
@@ -132,40 +134,42 @@ else
   set list listchars=tab:>-,trail:.,extends:>,precedes:<,nbsp:_
 endif
 
-" Highlight current line
+"Highlight current line
 "set cursorline
 
-" Use C-indenting
+"Use C-indenting
 set cindent
 
-" Disable folding
+"Disable folding
 set nofoldenable
 
-" Remap colon key to semicolon
+"Prevent using arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+"Remap colon key to semicolon
 nnoremap ; :
-" Remap J K in wrap mode
+"Remap J K in wrap mode
 nnoremap j gj
 nnoremap k gk
 
-" Turn off error bells
+"Turn off error bells
 set noerrorbells
 set visualbell
 set t_vb=
 
-" Keep at least 3 lines around the cursor
+"Keep at least 3 lines around the cursor
 set scrolloff=3
 set sidescrolloff=5
 
-" Always show status line
-set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]\ [%{&fo}]
-
-" Nginx
+"Nginx
 au BufNewFile,bufRead /etc/nginx/* set ft=nginx
 au BufNewFile,BufRead *.tpl set filetype=html
 au BufNewFile,BufRead *.go set filetype=golang
 
-" Set tab size for specific file format
+"Set tab size for specific file format
 au FileType php,perl setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType html,xhtml,xml,htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -173,7 +177,7 @@ au FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType python,objc,golang setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 au FileType nginx setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
-" Match TODO /\s\+$/
+"Match TODO /\s\+$/
 if &t_Co == 256
   hi ExtraWhiteSpace ctermbg=160 guibg=196
   au ColorScheme * hi ExtraWhiteSpace ctermbg=160 guibg=196
@@ -184,3 +188,43 @@ endif
 au BufEnter * match ExtraWhiteSpace /\s\+$/
 au InsertEnter * match ExtraWhiteSpace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
+"Jump to last cursor position when opening a file
+"Dont do it when writing a commit log entry
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+    if &filetype !~ 'svn\|commit\c'
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+            normal! zz
+        endif
+    end
+endfunction
+
+"Always show statusline
+set laststatus=2
+set statusline=\ %f%m%r%h%w\ %{fugitive#statusline()}%=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
+
+"NERDTree settings
+let g:NERDTreeMouseMode = 2
+let g:NERDTreeWinSize = 40
+
+"Explorer mappings
+nnoremap <F1> :BufExplorer<cr>
+nnoremap <F2> :NERDTreeToggle<cr>
+nnoremap <F3> :TagbarToggle<cr>
+
+"Make <c-l> clear the highlight as well as redraw
+nnoremap <C-L> :nohls<CR><C-L>
+inoremap <C-L> <C-O>:nohls<CR>
+
+"http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
+"Hacks from above (the url, not jesus) to delete fugitive buffers when we
+"leave them - otherwise the buffer list gets poluted
+"
+"add a mapping on .. to view parent tree
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd BufReadPost fugitive://*
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
