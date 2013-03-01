@@ -174,7 +174,7 @@ au FileType php,perl setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType html,xhtml,xml,htmldjango setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 au FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-au FileType python,objc,golang setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+au FileType java,python,objc,golang setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 au FileType nginx setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 "Match TODO /\s\+$/
