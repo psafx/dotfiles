@@ -3,17 +3,6 @@ set nocompatible
 "Modelines have historically been a source of security/resource
 set nomodeline
 
-"Setup vbundle
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bufexplorer.zip'
-Bundle 'Tagbar'
-
 "Enables syntax highlighting
 syntax on
 
@@ -203,28 +192,8 @@ endfunction
 
 "Always show statusline
 set laststatus=2
-set statusline=\ %f%m%r%h%w\ %{fugitive#statusline()}%=%({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
-
-"NERDTree settings
-let g:NERDTreeMouseMode = 2
-let g:NERDTreeWinSize = 40
-
-"Explorer mappings
-nnoremap <F1> :BufExplorer<cr>
-nnoremap <F2> :NERDTreeToggle<cr>
-nnoremap <F3> :TagbarToggle<cr>
+set statusline=\ %f%m%r%h%w\ %({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}%k\|%Y}%)\ %([%l,%v][%p%%]\ %)
 
 "Make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
 inoremap <C-L> <C-O>:nohls<CR>
-
-"http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-"Hacks from above (the url, not jesus) to delete fugitive buffers when we
-"leave them - otherwise the buffer list gets poluted
-"
-"add a mapping on .. to view parent tree
-autocmd BufReadPost fugitive://* set bufhidden=delete
-autocmd BufReadPost fugitive://*
-  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-  \   nnoremap <buffer> .. :edit %:h<CR> |
-  \ endif
