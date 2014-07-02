@@ -197,3 +197,5 @@ set statusline=\ %f%m%r%h%w\ %({%{&ff}\|%{(&fenc==\"\"?&enc:&fenc).((exists(\"+b
 "Make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
 inoremap <C-L> <C-O>:nohls<CR>
+
+au BufRead * set autoindent cindent smartindent

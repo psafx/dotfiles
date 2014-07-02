@@ -344,6 +344,12 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("javascriptGlobal", s:blue, "", "")
 	call <SID>X("javascriptStatement", s:red, "", "")
 
+        " CoffeeScript Highlighting
+        call <SID>X("coffeeRepeat", s:purple, "", "")
+        call <SID>X("coffeeConditional", s:purple, "", "")
+        call <SID>X("coffeeKeyword", s:purple, "", "")
+        call <SID>X("coffeeObject", s:yellow, "", "")
+
 	" HTML Highlighting
 	call <SID>X("htmlTag", s:red, "", "")
 	call <SID>X("htmlTagName", s:red, "", "")
@@ -351,14 +357,24 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("htmlScriptTag", s:red, "", "")
 
 	" Diff Highlighting
-	call <SID>X("diffAdded", s:green, "", "")
-	call <SID>X("diffRemoved", s:red, "", "")
+	call <SID>X("diffAdd", "", "4c4e39", "")
+	call <SID>X("diffDelete", s:background, s:red, "")
+	call <SID>X("diffChange", "", "2B5B77", "")
+	call <SID>X("diffText", s:line, s:blue, "")
 
 	" ShowMarks Highlighting
 	call <SID>X("ShowMarksHLl", s:orange, s:background, "none")
 	call <SID>X("ShowMarksHLo", s:purple, s:background, "none")
 	call <SID>X("ShowMarksHLu", s:yellow, s:background, "none")
 	call <SID>X("ShowMarksHLm", s:aqua, s:background, "none")
+
+	" Lua Highlighting
+	call <SID>X("luaStatement", s:purple, "", "")
+	call <SID>X("luaRepeat", s:purple, "", "")
+	call <SID>X("luaCondStart", s:purple, "", "")
+	call <SID>X("luaCondElseif", s:purple, "", "")
+	call <SID>X("luaCond", s:purple, "", "")
+	call <SID>X("luaCondEnd", s:purple, "", "")
 
 	" Cucumber Highlighting
 	call <SID>X("cucumberGiven", s:blue, "", "")
@@ -373,14 +389,6 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("goTodo", s:yellow, "", "")
 	call <SID>X("goDeclType", s:blue, "", "")
 	call <SID>X("goBuiltins", s:purple, "", "")
-
-	" Lua Highlighting
-	call <SID>X("luaStatement", s:purple, "", "")
-	call <SID>X("luaRepeat", s:purple, "", "")
-	call <SID>X("luaCondStart", s:purple, "", "")
-	call <SID>X("luaCondElseif", s:purple, "", "")
-	call <SID>X("luaCond", s:purple, "", "")
-	call <SID>X("luaCondEnd", s:purple, "", "")
 
 	" Clojure "highlighting
 	call <SID>X("clojureConstant", s:orange, "", "")
