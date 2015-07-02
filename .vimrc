@@ -57,9 +57,9 @@ set showmatch matchtime=2
 set grepprg=ag\ --hidden\ --vimgrep grepformat^=%f:%l:%c:%m
 
 " Indenting
-set autoindent
+au BufRead * set autoindent
 set smarttab expandtab
-set tabstop=2 softtabstop=2 shiftwidth=2 shiftround
+set shiftround shiftwidth=2 softtabstop=2 tabstop=2
 
 " Backup
 set history=200
@@ -114,16 +114,15 @@ inoremap <C-L> <C-O>:nohls<CR>
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Set file type
-au BufNewFile,bufRead /etc/nginx/* set ft=nginx
+au BufNewFile,BufRead /etc/nginx/* set ft=nginx
 au BufNewFile,BufRead *.tpl set filetype=html
 au BufNewFile,BufRead *.go set filetype=golang
 
 " Set tab size for specific file format
-au FileType java,python,objc,golang setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-au FileType nginx setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+au FileType goland,java,objc,python,nginx setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 "Jump to last cursor position when opening a file
-autocmd BufReadPost * call SetCursorPosition()
+au BufReadPost * call SetCursorPosition()
 function! SetCursorPosition()
     if line("'\"") > 0 && line("'\"") <= line("$")
         exe "normal! g`\""
