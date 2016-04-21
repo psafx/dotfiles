@@ -24,7 +24,6 @@ set dictionary+=/usr/share/dict/words
 set encoding=utf-8 nobomb
 set fileformats=unix
 set hidden
-set mouse=n ttymouse=sgr
 set nostartofline
 set nrformats-=octal
 set path=.,**
@@ -62,11 +61,10 @@ set smarttab expandtab
 set shiftround shiftwidth=2 softtabstop=2 tabstop=2
 
 " Backup
-set history=200
+"set history=200
 set noswapfile
-set backup backupdir=~/.vim/backup/
-set directory=~/.vim/tmp
-set undofile undodir=~/.vim/undo/
+"set backup backupdir=~/.vim/backup/
+"set directory=~/.vim/tmp
 
 " Turn off error bells
 set noerrorbells
@@ -119,7 +117,8 @@ au BufNewFile,BufRead *.tpl set filetype=html
 au BufNewFile,BufRead *.go set filetype=golang
 
 " Set tab size for specific file format
-au FileType goland,java,objc,python,nginx setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+au FileType golang,java,objc,python,php,nginx setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+au FileType javascript,css setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 "Jump to last cursor position when opening a file
 au BufReadPost * call SetCursorPosition()
